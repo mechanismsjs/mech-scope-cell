@@ -149,7 +149,7 @@ sp.cellSet("A:4", goodDay, false).go; // cell 'A:4' contains a reference to inst
 
 var goodEvening = m.str("Good evening!");
 sp.cell("A:5", "Good morning!", true);
-sp.cellSet("A:5",goodEvening, true).go; // cell 'A:5' contains the value "Good evening"
+sp.cellSet("A:5",goodEvening, true).go; // cell 'A:5' contains the value "Good evening!"
 ```
 
 ## CellRmF mechanism
