@@ -50,7 +50,7 @@ addF.go;
 
 Values are in cells '*A:1*' and '*A:2*'. Scope is defined by cells.
 
-addT and addF provide the same behavior.
+addT and m.add provide the same behavior.
 
 ### Example 01
 
