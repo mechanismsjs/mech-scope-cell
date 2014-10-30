@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Web Mech - Mocha Test Runner</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+  </head>
+  <body id="mocha">
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/mech-core/dist/mech-core.min.js"></script>
+    <script src="../dist/mech-scope-cell.min.js"></script>
+    <script>mocha.setup('bdd');</script>
+    <script src="./tests/cell.js"></script>
+    <script src="../tests/shared/cell.js"></script>
+    <script src="../tests/shared/cellGet.js"></script>
+    <script src="../tests/shared/cellSet.js"></script>
+    <script src="../tests/shared/js"></script>
+    <script>
+      var expect = chai.expect;
+      if (window.mochaPhantomJS) {
+        mochaPhantomJS.run();
+      } else {
+        mocha.run();
+      }
+    </script>
+  </body>
+</html>

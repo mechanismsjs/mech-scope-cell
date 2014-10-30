@@ -1,0 +1,56 @@
+{
+  "name": "mech-scope-cell",
+  "namesub": "cell",
+  "version": "0.1.1",
+  "description": "Spreadsheet scoping mechanisms.",
+  "main": "./dist/mech-scope-cell.js",
+  "scripts": {
+    "test": "gulp"
+  },
+  "README": "Adding or removing from source requires you to restart gulp.",
+  "source": [
+    "src/util/header.js",
+    "src/workbook.js",
+    "src/cell.js",
+    "src/cellGet.js",
+    "src/cellSet.js",
+    "src/util/footer.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mechanismsjs/mech-scope-cell.git"
+  },
+  "keywords": [
+    "mechanisms",
+    "client",
+    "server",
+    "cell",
+    "browser"
+  ],
+  "author": "YOUR INFORMATION",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ORGANIZATION/mech-scope-cell/issues"
+  },
+  "homepage": "https://github.com/ORGANIZATION/mech-scope-cell",
+  "devDependencies": {
+    "browserify": "^6.0.2",
+    "chai": "^1.9.2",
+    "gulp": "^3.8.8",
+    "gulp-coffee": "^2.2.0",
+    "gulp-concat": "^2.4.1",
+    "gulp-header": "^1.1.1",
+    "gulp-mocha": "^1.1.1",
+    "gulp-mocha-phantomjs": "^0.5.1",
+    "gulp-rename": "^1.2.0",
+    "gulp-replace": "^0.4.0",
+    "gulp-uglify": "^1.0.1",
+    "gulp-util": "^3.0.1",
+    "mech-core": "*",
+    "mech-emit": "^0.1.7",
+    "mech-math": "^0.1.8",
+    "merge": "^1.2.0",
+    "mocha": "^1.21.4",
+    "vinyl-transform": "0.0.1"
+  }
+}
