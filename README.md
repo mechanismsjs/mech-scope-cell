@@ -16,8 +16,8 @@ See [Mechanisms Home][mech-home-link] for more information and other libraries.
 Supported Mechanisms:
 
 * *cell* - a cell whose value is uniquely identified by row, column and worksheet.
-* *cellGet* - read a value from a cell
-* *cellSet* - set a value in a cell
+* *cellGet* - read a value from a cell.
+* *cellSet* - set a value in a cell: overwriting an existing value or creating a new cell if one does not exist.
 * *workbook* - global workbook containing multiple worksheets.
 
 ## TODO
@@ -128,7 +128,7 @@ sp.cellWorkBook; // shows all cells
 
 ## CellSetF mechanism
 
-Sets the value of a cell.
+Sets the value of a cell: overwriting any existing value. A new cell is created if it does not exist.
 
 ```javascript
 var sp = require("mech-scope-cell");
