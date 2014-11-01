@@ -19,18 +19,18 @@ CellSetF.prototype = Object.create ( Object.prototype, {
 	go: { enumerable: false, get: function() {
 		var cellV = m.cellWorkBook[this._id];
 		var val = this._v.isMech ? (this._byVal ? this._v.go : this._v) : this._v;
-		if (cellV._v.isMech) {
-			cellV._v._v = val;
+		if (cellV) {
+			if (cellV._v.isMech) {
+				cellV._v._v = val;
+			} else {
+				cellV._v = val;
+			}
 		} else {
-			cellV._v = val;
+			cell(this._id,this._v);
 		}
 
 		return this._v;
-	}},
-	// goNum: { enumerable: false, get: function() { return m.cellWorkBook[this._id].goNum; }},
-	// goStr: { enumerable: false, get: function() { return m.cellWorkBook[this._id].goStr; }},
-	// goArr: { enumerable: false, get: function() { return m.cellWorkBook[this._id].goArr; }},
-	// goBool: { enumerable: false, get: function() { return m.cellWorkBook[this._id].goBool; }}
+	}}
 });
 m.cellSet = cellSet;
 m._.CellSetF = CellSetF;

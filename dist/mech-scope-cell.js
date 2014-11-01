@@ -1,5 +1,5 @@
 // mech-scope-cell.js
-// version: 0.1.1
+// version: 0.1.2
 // author: YOUR INFORMATION
 // license: MIT
 (function() {
@@ -8,7 +8,7 @@
 var root = this; // window (browser) or exports (server)
 var m = root.m || {}; // merge with previous or new module
 m._ = m._ || {}; // merge with pervious or new sub-module
-m._["version-cell"] = '0.1.1'; // version set through gulp build
+m._["version-cell"] = '0.1.2'; // version set through gulp build
 
 // export module for node or the browser
 if(typeof module !== 'undefined' && module.exports) {
@@ -34,11 +34,11 @@ CellF.prototype = Object.create ( Object.prototype, {
 	id: { enumerable: false, get: function() { return this._id; }},
 	col: { enumerable: false, get: function() { return this._col; }},
 	row: { enumerable: false, get: function() { return this._row; }},
-	go: { enumerable: false, get: function() { return this._v.isMech ? this._v.go : this._v; }},
-	goNum: { enumerable: false, get: function() { return this._v.isMech ? this._v.goNum : Number(this._v); }},
-	goStr: { enumerable: false, get: function() { return this._v.isMech ? this._v.goStr : this._v.toString(); }},
-	goArr: { enumerable: false, get: function() { return this._v.isMech ? this._v.goArr : [this._v]; }},
-	goBool: { enumerable: false, get: function() { return this._v.isMech ? this._v.goBool : this._v > 0; }}
+	go: { enumerable: false, get: function() { return (undefined === this._v || null === this._v) ? this._v : (this._v.isMech ? this._v.go : this._v); }},
+	goNum: { enumerable: false, get: function() { return (undefined === this._v || null === this._v) ? this._v : (this._v.isMech ? this._v.goNum : Number(this._v)); }},
+	goStr: { enumerable: false, get: function() { return (undefined === this._v || null === this._v) ? this._v : (this._v.isMech ? this._v.goStr : this._v.toString()); }},
+	goArr: { enumerable: false, get: function() { return (undefined === this._v || null === this._v) ? [this._v] : (this._v.isMech ? this._v.goArr : [this._v]); }},
+	goBool: { enumerable: false, get: function() { return (undefined === this._v || null === this._v) ? false : (this._v.isMech ? this._v.goBool : this._v > 0); }}
 });
 m.cell = cell;
 m._.CellF = CellF;
@@ -88,18 +88,18 @@ CellSetF.prototype = Object.create ( Object.prototype, {
 	go: { enumerable: false, get: function() {
 		var cellV = m.cellWorkBook[this._id];
 		var val = this._v.isMech ? (this._byVal ? this._v.go : this._v) : this._v;
-		if (cellV._v.isMech) {
-			cellV._v._v = val;
+		if (cellV) {
+			if (cellV._v.isMech) {
+				cellV._v._v = val;
+			} else {
+				cellV._v = val;
+			}
 		} else {
-			cellV._v = val;
+			cell(this._id,this._v);
 		}
 
 		return this._v;
-	}},
-	// goNum: { enumerable: false, get: function() { return m.cellWorkBook[this._id].goNum; }},
-	// goStr: { enumerable: false, get: function() { return m.cellWorkBook[this._id].goStr; }},
-	// goArr: { enumerable: false, get: function() { return m.cellWorkBook[this._id].goArr; }},
-	// goBool: { enumerable: false, get: function() { return m.cellWorkBook[this._id].goBool; }}
+	}}
 });
 m.cellSet = cellSet;
 m._.CellSetF = CellSetF;

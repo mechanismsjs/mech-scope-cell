@@ -9,7 +9,7 @@ describe ("testing cell", function() {
     expect(mech.isMech).to.be.equal(true);
   });
 
-  it ("should have a global workbook that is never overwritten", function() {
+  it ("should have a global workbook", function() {
     expect(m.cellWorkBook).to.be.an('array');
   });
 
@@ -17,8 +17,16 @@ describe ("testing cell", function() {
     var mech = m.cell();
     expect(mech.col).to.equal("A");
     expect(mech.row).to.equal(0);
-    expect(m.cellWorkBook['A:0']).to.equal(mech);
+    expect(m.cellWorkBook["A:0"]).to.equal(mech);
+
+    var mech2 = m.cell(null);
+    expect(mech2.col).to.equal("A");
+    expect(mech2.row).to.equal(0);
+    expect(m.cellWorkBook['A:0']).to.equal(mech2);
   });
+
+
+
 
   it ("can initialize a cell using col row value: no sheet", function() {
     var mech = m.cell("A:1");

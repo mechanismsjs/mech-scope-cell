@@ -79,4 +79,9 @@ describe ("testing cell", function() {
     expect(mech3.goBool).to.equal(true);
   });
 
+  it ("should create a cell then set it if one does not exist alread", function() {
+    var mech = m.cellSet("B:2", 21);
+    (expect(mech.go).to.equal(21));
+  });
+
 });
