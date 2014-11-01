@@ -1,5 +1,5 @@
 // mech-scope-cell.js
-// version: 0.1.2
+// version: 0.1.3
 // author: YOUR INFORMATION
 // license: MIT
 (function() {
@@ -8,7 +8,7 @@
 var root = this; // window (browser) or exports (server)
 var m = root.m || {}; // merge with previous or new module
 m._ = m._ || {}; // merge with pervious or new sub-module
-m._["version-cell"] = '0.1.2'; // version set through gulp build
+m._["version-cell"] = '0.1.3'; // version set through gulp build
 
 // export module for node or the browser
 if(typeof module !== 'undefined' && module.exports) {
@@ -58,11 +58,26 @@ CellGetF.prototype = Object.create ( Object.prototype, {
 	id: { enumerable: false, get: function() { return this._id; }},
 	col: { enumerable: false, get: function() { return this._col; }},
 	row: { enumerable: false, get: function() { return this._row; }},
-	go: { enumerable: false, get: function() { return m.cellWorkBook[this._id].go; }},
-	goNum: { enumerable: false, get: function() { return m.cellWorkBook[this._id].goNum; }},
-	goStr: { enumerable: false, get: function() { return m.cellWorkBook[this._id].goStr; }},
-	goArr: { enumerable: false, get: function() { return m.cellWorkBook[this._id].goArr; }},
-	goBool: { enumerable: false, get: function() { return m.cellWorkBook[this._id].goBool; }}
+	go: { enumerable: false, get: function() {
+		var mech = m.cellWorkBook[this._id];
+		return (undefined === mech) ? undefined : mech.go;
+	}},
+	goNum: { enumerable: false, get: function() {
+		var mech = m.cellWorkBook[this._id];
+		return (undefined === mech) ? undefined : mech.goNum;
+	}},
+	goStr: { enumerable: false, get: function() {
+		var mech = m.cellWorkBook[this._id];
+		return (undefined === mech) ? undefined : mech.goStr;
+	}},
+	goArr: { enumerable: false, get: function() {
+		var mech = m.cellWorkBook[this._id];
+		return (undefined === mech) ? [undefined] : mech.goArr;
+	}},
+	goBool: { enumerable: false, get: function() {
+		var mech = m.cellWorkBook[this._id];
+		return (undefined === mech) ? false : mech.goBool;
+	}}
 });
 m.cellGet = cellGet;
 m._.CellGetF = CellGetF;

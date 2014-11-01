@@ -63,4 +63,25 @@ describe ("testing cell", function() {
 
   });
 
+  it ("should return null when the cell id is null or undefined", function() {
+    var mech = m.cellGet();
+
+    expect(mech.go).to.be.undefined;
+    expect(mech.goNum).to.be.undefined;
+    expect(mech.goStr).to.be.undefined;
+    expect(mech.goArr[0]).to.be.undefined;
+    expect(mech.goBool).to.equal(false);
+
+    var mech2 = m.cellGet(null);
+    expect(mech2.go).to.be.undefined;
+    expect(mech2.goNum).to.be.undefined;
+    expect(mech2.goStr).to.be.undefined;
+    expect(mech2.goArr[0]).to.be.undefined;
+    expect(mech2.goBool).to.equal(false);
+
+
+  });
+
+
+
 });
