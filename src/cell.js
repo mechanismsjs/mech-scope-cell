@@ -3,7 +3,7 @@ function cell(id,v) {
   // console.log(m.cellWorkBook);
 	var f = Object.create(CellF.prototype);
 	f._id = id ? id : "A:0";
-	f._v = v;
+	f._v = (undefined === v) ? null : v;
 	var split = f._id.split(":");
 	f._col=split[0];
 	f._row=Number(split[1]);

@@ -1,4 +1,4 @@
-describe ("testing cell", function() {
+describe ("creating a cell instance - cell", function() {
 
   beforeEach(function() {
     for (var key in m.cellWorkBook) {
@@ -9,7 +9,7 @@ describe ("testing cell", function() {
   });
 
   it ("should not wipeout Object prototype and be a mechanism", function() {
-    var mech = m.cell(); 
+    var mech = m.cell();
     expect(mech).to.have.property('toString');
     expect(m).to.not.eql(undefined);
     expect(m.cell).to.not.eql(undefined);
@@ -27,6 +27,8 @@ describe ("testing cell", function() {
     expect(mech.col).to.equal("A");
     expect(mech.row).to.equal(0);
     expect(m.cellWorkBook["A:0"]).to.equal(mech);
+    expect(mech._v).to.be.null;
+    expect(mech._v).to.not.be.undefined;
 
     var mech2 = m.cell(null);
     expect(mech2.col).to.equal("A");

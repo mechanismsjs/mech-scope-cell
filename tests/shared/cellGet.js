@@ -1,4 +1,4 @@
-describe ("testing cell", function() {
+describe ("getting a cell value - cellGet", function() {
 
   beforeEach(function() {
     for (var key in m.cellWorkBook) {
@@ -47,14 +47,14 @@ describe ("testing cell", function() {
   });
 
 
-  it ("should return undefined when the value in a cell is undefined", function() {
+  it ("should return null when the value in a cell is undefined", function() {
     var mech2 = m.cell("B:5");
     var mech = m.cellGet("B:5");
 
-    expect(mech.go).to.be.undefined;
-    expect(mech.goNum).to.be.undefined;
-    expect(mech.goStr).to.be.undefined;
-    expect(mech.goArr[0]).to.be.undefined;
+    expect(mech.go).to.be.null;
+    expect(mech.goNum).to.be.null;
+    expect(mech.goStr).to.be.null;
+    expect(mech.goArr[0]).to.be.null;
     expect(mech.goBool).to.equal(false);
 
   });

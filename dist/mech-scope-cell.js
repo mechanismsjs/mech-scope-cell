@@ -1,18 +1,15 @@
 // mech-scope-cell.js
-// version: 0.1.4
+// version: 0.1.5
 // author: YOUR INFORMATION
 // license: MIT
 (function() {
 "use strict";
 
 var root = this; // window (browser) or exports (server)
-// console.log("Loading mech-scope-cell");
-// console.log(root);
-// console.log(root.m);
 
 var m = root.m || {}; // merge with previous or new module
 m._ = m._ || {}; // merge with pervious or new sub-module
-m._["version-cell"] = '0.1.4'; // version set through gulp build
+m._["version-cell"] = '0.1.5'; // version set through gulp build
 
 // export module for node or the browser
 if(typeof module !== 'undefined' && module.exports) {
@@ -27,7 +24,7 @@ function cell(id,v) {
   // console.log(m.cellWorkBook);
 	var f = Object.create(CellF.prototype);
 	f._id = id ? id : "A:0";
-	f._v = v;
+	f._v = (undefined === v) ? null : v;
 	var split = f._id.split(":");
 	f._col=split[0];
 	f._row=Number(split[1]);
@@ -125,6 +122,27 @@ CellSetF.prototype = Object.create ( Object.prototype, {
 });
 m.cellSet = cellSet;
 m._.CellSetF = CellSetF;
+
+function cellRef(id) {
+	var f = Object.create(CellRefF.prototype);
+	f._id = id;
+	if ( f._id ) {
+		var split = f._id.split(":");
+		f._col=split[0];
+		f._row=Number(split[1]);
+	}
+	return f;
+}
+function CellRefF() {}
+CellRefF.prototype = Object.create ( Object.prototype, {
+	isMech: { get: function() { return true; }},
+	id: { enumerable: false, get: function() { return this._id; }},
+	col: { enumerable: false, get: function() { return this._col; }},
+	row: { enumerable: false, get: function() { return this._row; }},
+	go: { enumerable: false, get: function() { return m.cellWorkBook[this._id]; }}
+});
+m.cellRef = cellRef;
+m._.CellRefF = CellRefF;
 
 
 }.call(this));

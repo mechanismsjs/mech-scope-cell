@@ -1,4 +1,4 @@
-describe ("testing cell", function() {
+describe ("setting a cell value - cellSet", function() {
 
   beforeEach(function() {
     for (var key in m.cellWorkBook) {

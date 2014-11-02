@@ -15,10 +15,12 @@ See [Mechanisms Home][mech-home-link] for more information and other libraries.
 
 Supported Mechanisms:
 
-* *cell* - a cell whose value is uniquely identified by row, column and worksheet.
-* *cellGet* - read a value from a cell.
-* *cellSet* - set a value in a cell: overwriting an existing value or creating a new cell if one does not exist.
-* *workbook* - global workbook containing multiple worksheets.
+* *[cell](#cell-mechanism)* - a cell whose value is uniquely identified by row, column and worksheet.
+* *[cellGet](#cellget-mechanism)* - read a value from a cell.
+* *[cellSet](#cellset-mechanism)* - set a value in a cell: overwriting an existing value or creating a new cell if one does not exist.
+* *[cellRef](#cellref-mechanism)* - returns a reference to a cell.
+* *[cellRm](#cellrm-mechanism)* - removes a cell from a workbook.
+* *[workbook](#workbook-mechanism)* - global workbook containing multiple worksheets.
 
 ## TODO
 
@@ -92,9 +94,14 @@ sp.cellGet("A:1").go; // returns 5
 ```
 We've plugged an emitter into cell '*A:1*'. Every time we get from that cell, we cause the emitter mechanism to run emitting a single value.
 
-## CellF mechanism
+## <a name="cell-mechanism"></a>CellF mechanism
 
 A cell whose value is uniquely identified by column, row and worksheet.
+
+**NOTE: A cell value can never be the undefined primitive.**  
+
+* A cell can contain the null primitive.
+* A cell can contain mechanisms that evaluate to undefined.
 
 ```javascript
 var sp = require("mech-scope-cell");
@@ -109,7 +116,7 @@ A cell automatically adds itself to the global workbook: **cellWorkBook**.
 
 See cellRm mechanism to remove a cell
 
-## CellGetF mechanism
+## <a name="cellget-mechanism"></a>CellGetF mechanism
 
 Returns the value of a cell.
 
@@ -126,7 +133,7 @@ sp.cellWorkBook; // shows all cells
 
 ```
 
-## CellSetF mechanism
+## <a name="cellset-mechanism"></a>CellSetF mechanism
 
 Sets the value of a cell: overwriting any existing value. A new cell is created if it does not exist.
 
@@ -152,7 +159,17 @@ sp.cell("A:5", "Good morning!", true);
 sp.cellSet("A:5",goodEvening, true).go; // cell 'A:5' contains the value "Good evening!"
 ```
 
-## CellRmF mechanism
+## <a name="cellref-mechanism"></a>CellRefF mechanism
+
+Returns a reference to a cell.
+
+```javascript
+var sp = require("mech-scope-cell");
+var newCell = sp.cell("B:3","Good day!");
+sp.cellRef("B:3").go; // equals newCell
+```
+
+## <a name="cellrm-mechanism"></a>CellRmF mechanism
 
 Removes a cell from the global workbook.
 
