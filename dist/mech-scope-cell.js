@@ -1,24 +1,30 @@
 // mech-scope-cell.js
-// version: 0.1.3
+// version: 0.1.4
 // author: YOUR INFORMATION
 // license: MIT
 (function() {
 "use strict";
 
 var root = this; // window (browser) or exports (server)
+// console.log("Loading mech-scope-cell");
+// console.log(root);
+// console.log(root.m);
+
 var m = root.m || {}; // merge with previous or new module
 m._ = m._ || {}; // merge with pervious or new sub-module
-m._["version-cell"] = '0.1.3'; // version set through gulp build
+m._["version-cell"] = '0.1.4'; // version set through gulp build
 
 // export module for node or the browser
 if(typeof module !== 'undefined' && module.exports) {
   module.exports = m;
 } else {
   root.m = m;
-}
+} 
 
-m.cellWorkBook = m.cellWorkBook || [];
+m.cellWorkBook = m.cellWorkBook || [{"wb" : "0.1.1"}];
 function cell(id,v) {
+  // console.log("HELLO");
+  // console.log(m.cellWorkBook);
 	var f = Object.create(CellF.prototype);
 	f._id = id ? id : "A:0";
 	f._v = v;
@@ -42,6 +48,7 @@ CellF.prototype = Object.create ( Object.prototype, {
 });
 m.cell = cell;
 m._.CellF = CellF;
+
 function cellGet(id) {
 	var f = Object.create(CellGetF.prototype);
 	f._id = id;
@@ -102,15 +109,15 @@ CellSetF.prototype = Object.create ( Object.prototype, {
 	row: { enumerable: false, get: function() { return this._row; }},
 	go: { enumerable: false, get: function() {
 		var cellV = m.cellWorkBook[this._id];
-		var val = this._v.isMech ? (this._byVal ? this._v.go : this._v) : this._v;
+		var val = (undefined === this._v || null === this._v) ? this._v : (this._v.isMech ? (this._byVal ? this._v.go : this._v) : this._v);
 		if (cellV) {
-			if (cellV._v.isMech) {
+			if (cellV._v && cellV._v.isMech) {
 				cellV._v._v = val;
 			} else {
 				cellV._v = val;
 			}
 		} else {
-			cell(this._id,this._v);
+			cell(this._id,this._v); // No cell, so create one
 		}
 
 		return this._v;

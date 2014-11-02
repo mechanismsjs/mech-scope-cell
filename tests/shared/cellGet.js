@@ -1,4 +1,13 @@
 describe ("testing cell", function() {
+
+  beforeEach(function() {
+    for (var key in m.cellWorkBook) {
+      if (m.cellWorkBook.hasOwnProperty(key)) {
+        delete m.cellWorkBook[key]; // slow but for tests ok
+      }
+    }
+  });
+  
   it ("should not wipeout Object prototype and be a mechanism", function() {
     var mech = m.cellGet();
     expect(mech).to.have.property('toString');

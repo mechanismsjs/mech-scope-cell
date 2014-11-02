@@ -1,6 +1,15 @@
 describe ("testing cell", function() {
+
+  beforeEach(function() {
+    for (var key in m.cellWorkBook) {
+      if (m.cellWorkBook.hasOwnProperty(key)) {
+        delete m.cellWorkBook[key]; // slow but for tests ok
+      }
+    }
+  });
+
   it ("should not wipeout Object prototype and be a mechanism", function() {
-    var mech = m.cell();
+    var mech = m.cell(); 
     expect(mech).to.have.property('toString');
     expect(m).to.not.eql(undefined);
     expect(m.cell).to.not.eql(undefined);
@@ -25,11 +34,9 @@ describe ("testing cell", function() {
     expect(m.cellWorkBook['A:0']).to.equal(mech2);
   });
 
-
-
-
   it ("can initialize a cell using col row value: no sheet", function() {
     var mech = m.cell("A:1");
+    mech.go;
     expect(mech.id).to.equal("A:1");
     expect(mech.col).to.equal("A");
     expect(mech.row).to.equal(1);
@@ -37,6 +44,7 @@ describe ("testing cell", function() {
 
   it ("can hold a primitive value", function() {
     var mech = m.cell("JJ:1000", 5);
+    mech.go;
     expect(mech.col).to.equal("JJ");
     expect(mech.row).to.equal(1000);
     expect(mech.go).to.equal(5);
@@ -47,6 +55,7 @@ describe ("testing cell", function() {
 
 
     var mech2 = m.cell("LB:21", "Hello");
+    mech2.go;
     expect(mech2.col).to.equal("LB");
     expect(mech2.row).to.equal(21);
     expect(mech2.go).to.equal("Hello");
@@ -59,6 +68,7 @@ describe ("testing cell", function() {
 
   it ("can hold a mechanism", function() {
     var mech = m.cell("B:5", m.num(56));
+    mech.go;
     expect(mech.go).to.equal(56);
     expect(mech.goNum).to.equal(56);
     expect(mech.goStr).to.equal("56");

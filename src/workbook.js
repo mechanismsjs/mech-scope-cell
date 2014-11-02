@@ -1,1 +1,1 @@
-m.cellWorkBook = m.cellWorkBook || [];
+m.cellWorkBook = m.cellWorkBook || [{"wb" : "0.1.1"}];

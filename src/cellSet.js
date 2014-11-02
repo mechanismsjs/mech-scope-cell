@@ -18,15 +18,15 @@ CellSetF.prototype = Object.create ( Object.prototype, {
 	row: { enumerable: false, get: function() { return this._row; }},
 	go: { enumerable: false, get: function() {
 		var cellV = m.cellWorkBook[this._id];
-		var val = this._v.isMech ? (this._byVal ? this._v.go : this._v) : this._v;
+		var val = (undefined === this._v || null === this._v) ? this._v : (this._v.isMech ? (this._byVal ? this._v.go : this._v) : this._v);
 		if (cellV) {
-			if (cellV._v.isMech) {
+			if (cellV._v && cellV._v.isMech) {
 				cellV._v._v = val;
 			} else {
 				cellV._v = val;
 			}
 		} else {
-			cell(this._id,this._v);
+			cell(this._id,this._v); // No cell, so create one
 		}
 
 		return this._v;
