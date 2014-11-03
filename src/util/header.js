@@ -2,7 +2,6 @@
 "use strict";
 
 var root = this; // window (browser) or exports (server)
-
 var m = root.m || {}; // merge with previous or new module
 m._ = m._ || {}; // merge with pervious or new sub-module
 m._["version-{{NAMESUB}}"] = '{{VERSION}}'; // version set through gulp build

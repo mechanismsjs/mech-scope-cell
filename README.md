@@ -20,7 +20,7 @@ Supported Mechanisms:
 * *[cellSet](#cellset-mechanism)* - set a value in a cell: overwriting an existing value or creating a new cell if one does not exist.
 * *[cellRef](#cellref-mechanism)* - returns a reference to a cell.
 * *[cellRm](#cellrm-mechanism)* - removes a cell from a workbook.
-* *[workbook](#workbook-mechanism)* - global workbook containing multiple worksheets.
+* *[workbook](#workbook-global)* - global workbook containing multiple worksheets.
 
 ## TODO
 
@@ -174,6 +174,17 @@ sp.cellRef("B:3").go; // equals newCell
 Removes a cell from the global workbook.
 
 // **TODO**: create a remove mechanism
+
+## <a name="workbook-global"></a>cellWorkBook Global
+
+A global variable where all scoping is stored.
+
+```javascript
+m.cell("A:1",m.writeLn("Hello"));
+m.cellWorkBook["A:1"].go; // writes hello to the console
+```
+
+It is better to access the cellWorkBook using mechanisms than directly as shown in the example. We reserve the right to change the underlying data structure.
 
 # Setup
 

@@ -11,9 +11,7 @@ describe ("getting a reference to a cell - cellRef", function() {
   it ("should not wipeout Object prototype and be a mechanism", function() {
     var mech = m.cellRef();
     expect(mech).to.have.property('toString');
-    expect(m).to.not.eql(undefined);
     expect(m.cell).to.not.eql(undefined);
-    expect(m._).to.not.eql(undefined);
     expect(m._.CellRefF).to.not.eql(undefined);
     expect(mech.isMech).to.be.equal(true);
   });

@@ -1,7 +1,7 @@
 {
   "name": "mech-scope-cell",
   "namesub": "cell",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Spreadsheet scoping mechanisms.",
   "main": "./dist/mech-scope-cell.js",
   "scripts": {
@@ -28,12 +28,12 @@
     "cell",
     "browser"
   ],
-  "author": "YOUR INFORMATION",
+  "author": "Eric Hosick <erichosick@gmail.com> (http://www.erichosick.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ORGANIZATION/mech-scope-cell/issues"
+    "url": "https://github.com/mechanismsjs/mech-scope-cell/issues"
   },
-  "homepage": "https://github.com/ORGANIZATION/mech-scope-cell",
+  "homepage": "https://github.com/mechanismsjs/mech-scope-cell",
   "devDependencies": {
     "browserify": "^6.0.2",
     "chai": "^1.9.2",
