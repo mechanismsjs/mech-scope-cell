@@ -13,23 +13,24 @@ function cellSet(id,v,byVal) {
 function CellSetF() {}
 CellSetF.prototype = Object.create ( Object.prototype, {
 	isMech: { get: function() { return true; }},
+	v: { get: function() { return this._v; }},	
 	id: { enumerable: false, get: function() { return this._id; }},
 	col: { enumerable: false, get: function() { return this._col; }},
 	row: { enumerable: false, get: function() { return this._row; }},
 	go: { enumerable: false, get: function() {
 		var cellV = m.cellWorkBook[this._id];
-		var val = (undefined === this._v || null === this._v) ? this._v : (this._v.isMech ? (this._byVal ? this._v.go : this._v) : this._v);
+		var val = (undefined === this.v || null === this.v) ? this.v : (this.v.isMech ? (this._byVal ? this.v.go : this.v) : this.v);
 		if (cellV) {
-			if (cellV._v && cellV._v.isMech) {
-				cellV._v._v = val;
+			if (cellV.v && cellV.v.isMech) {
+				cellV.v.v = val;
 			} else {
-				cellV._v = val;
+				cellV.v = val;
 			}
 		} else {
-			cell(this._id,this._v); // No cell, so create one
+			cell(this._id,this.v); // No cell, so create one
 		}
 
-		return this._v;
+		return this.v;
 	}}
 });
 m.cellSet = cellSet;

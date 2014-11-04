@@ -21,6 +21,7 @@ describe ("setting a cell (cellSet)", function() {
     var mech2 = m.cellSet("B:5","Ola");
     var mech3 = m.cellGet("B:5");
 
+    expect(mech2.v).to.equal("Ola");
     expect(mech3.go).to.equal(-23);
     expect(mech3.goNum).to.equal(-23);
     expect(mech3.goStr).to.equal("-23");
