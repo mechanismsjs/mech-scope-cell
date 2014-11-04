@@ -13,13 +13,14 @@ function cell(id,v) {
 function CellF() {}
 CellF.prototype = Object.create ( Object.prototype, {
 	isMech: { get: function() { return true; }},
+	v: { get: function() { return this._v; }},	
 	id: { enumerable: false, get: function() { return this._id; }},
 	col: { enumerable: false, get: function() { return this._col; }},
 	row: { enumerable: false, get: function() { return this._row; }},
 	go: { enumerable: false, get: function() { return (undefined === this._v || null === this._v) ? this._v : (this._v.isMech ? this._v.go : this._v); }},
 	goNum: { enumerable: false, get: function() { return (undefined === this._v || null === this._v) ? this._v : (this._v.isMech ? this._v.goNum : Number(this._v)); }},
 	goStr: { enumerable: false, get: function() { return (undefined === this._v || null === this._v) ? this._v : (this._v.isMech ? this._v.goStr : this._v.toString()); }},
-	goArr: { enumerable: false, get: function() { return (undefined === this._v || null === this._v) ? [this._v] : (this._v.isMech ? this._v.goArr : [this._v]); }},
+	goArr: { enumerable: false, get: function() { return (undefined === this._v || null === this._v) ? [this._v] : (this._v.isMech ? this._v.goArr : (this._v instanceof Array) ? this._v : [this._v]); }},
 	goBool: { enumerable: false, get: function() { return (undefined === this._v || null === this._v) ? false : (this._v.isMech ? this._v.goBool : this._v > 0); }}
 });
 m.cell = cell;

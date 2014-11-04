@@ -4,3 +4,4 @@ require("./shared/cell.js");
 require("./shared/cellGet.js");
 require("./shared/cellSet.js");
 require("./shared/cellRef.js");
+require("./shared/cellRm.js");

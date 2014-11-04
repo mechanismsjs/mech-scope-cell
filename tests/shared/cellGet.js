@@ -29,7 +29,18 @@ describe ("getting a cell value - cellGet", function() {
     expect(mech.goStr).to.equal("-23");
     expect(mech.goArr).to.contain(-23);
     expect(mech.goBool).to.equal(false);
+  });
 
+
+  it ("should find an array value in the book", function() {
+    m.cell("B:5",[9,12]);
+    var mech = m.cellGet("B:5");
+
+    expect(mech.go).to.eql([9,12]);
+    expect(mech.goNum).to.be.NaN;
+    expect(mech.goStr).to.equal("9,12");
+    expect(mech.goArr).to.eql([9,12]);
+    expect(mech.goBool).to.equal(false);
   });
 
   it ("should find a value in the book when that value is a mechanism", function() {
@@ -85,7 +96,6 @@ describe ("getting a cell value - cellGet", function() {
     expect(mech2.goStr).to.be.undefined;
     expect(mech2.goArr[0]).to.be.undefined;
     expect(mech2.goBool).to.equal(false);
-
 
   });
 

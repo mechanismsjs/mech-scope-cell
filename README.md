@@ -26,7 +26,6 @@ Supported Mechanisms:
 
 * Add support so cells belong to a work sheet.
 * Collision detection when creating a cell.
-* Create a cellRm (cell remove) mechanism.
 
 ## Stack and Cell Scoping Mechanisms
 
@@ -173,7 +172,12 @@ sp.cellRef("B:3").go; // equals newCell
 
 Removes a cell from the global workbook.
 
-// **TODO**: create a remove mechanism
+```javascript
+var sp = require("mech-scope-cell");
+sp.cell("B:3","Good day!");
+sp.cellRm("B:3").go; // removes cell "B:3" and returns true
+sp.cellRm("A:1").go; // no cell is removed and returns true
+```
 
 ## <a name="workbook-global"></a>cellWorkBook Global
 
