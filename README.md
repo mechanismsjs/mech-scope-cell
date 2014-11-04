@@ -7,7 +7,7 @@
 
 This library provides cell (spreadsheet) based [scoping](https://en.wikipedia.org/wiki/Scope_%28computer_science%29) mechanisms. It is consider core so directly added to the m (mechanisms) library.
 
-A video on usage can be found [here](http://youtu.be/3gSiYtBEMjY).
+A video on usage can be found [here](http://youtu.be/3gSiYtBEMjY) and gist [here](https://gist.github.com/erichosick/d036582d9b9b28a11e01).
 
 Traditional [scoping](https://en.wikipedia.org/wiki/Scope_%28computer_science%29) mechanisms are stack based ([mech-scope-stack][mech-scope-stack-home-link]).
 
