@@ -1,7 +1,7 @@
 {
   "name": "mech-scope-cell",
   "namesub": "cell",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "Spreadsheet scoping mechanisms.",
   "main": "./dist/mech-scope-cell.js",
   "scripts": {
