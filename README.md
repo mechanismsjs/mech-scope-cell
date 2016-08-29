@@ -196,24 +196,39 @@ It is better to access the cellWorkBook using mechanisms than directly as shown 
 
 Change directory to your node project.
 
-    $ npm install --save mech-scope-cell
+```
+$ npm install --save mech-scope-cell
+```
 
 ## Development
 
+### Get Involved!
+
+There are **a lot** of core mechanisms just waiting to be created. Many of them can be created in a few hours including in-depth tests. Clone [mech-library][mech-library-link] to get started!
+
 ### Setup
 
-    $ npm install
+Install:
+```
+$ npm install
+```
 
-### Continuous Rebuild and Testing
+Continuous test:
+```
+$ gulp
+```
 
-See ./dist for files we build.
+Test:
+```
+$ gulp webtests
+```
 
-    $ gulp
+#### Test Server
 
-#### Test
+Read documentation in gulpfile.js to see how to setup automated web testing.
 
-    $ gulp webtests
+```
+$ gulp webserver
+```
 
-OR
-
-Right mouse click on /testsweb/index.html and open in browser.
+[mech-library-link]: https://github.com/mechanismsjs/mech-library "Clone to easily create new mechanism libraries"
