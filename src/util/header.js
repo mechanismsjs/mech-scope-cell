@@ -8,7 +8,7 @@ m._["version-{{NAMESUB}}"] = '{{VERSION}}'; // version set through gulp build
 
 // export module for node or the browser
 if (typeof module !== 'undefined' && module.exports) {
-	module.exports = m;
+  module.exports = m;
 } else {
-	root.m = m;
+  root.m = m;
 }
