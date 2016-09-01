@@ -24,7 +24,6 @@ Supported Mechanisms:
 
 ## TODO
 
-* Add support so cells belong to a work sheet.
 * Collision detection when creating a cell.
 
 ## Stack and Cell Scoping Mechanisms
@@ -44,12 +43,12 @@ Cell based scoping mechanisms use cells (as opposed to a stack) to store values.
 var sp = require("mech-scope-cell");
 var m = require("mech-math");
 sp.cell("A:1",5);
-sp.cell("A:2",2);
-var addF = m.add(sp.cellGet("A:1"), sp.cellGet("A:2"));
+sp.cell("Sheet01:A:2",2);
+var addF = m.add(sp.cellGet("A:1"), sp.cellGet("Sheet01:A:2"));
 addF.go;
 ```
 
-Values are in cells '*A:1*' and '*A:2*'. Scope is defined by cells.
+Values are in cells '*A:1*' and '*Sheet01:A:2*'. Scope is defined by cells.
 
 addT and m.add provide the same behavior.
 
@@ -104,9 +103,9 @@ A cell whose value is uniquely identified by column, row and worksheet.
 
 ```javascript
 var sp = require("mech-scope-cell");
-sp.cell("A:1",4); // cell in 'DEF' work book, column A row 1 with a value of 4
-sp.cell(); // cell in 'DEF" work book at column A row 0 with a value of undefined
-sp.cell("WS1:BB:34"); // cell in 'WS1' work book, column BB row 34 // TODO: workbooks aren't supported yet so
+sp.cell("A:1",4); // cell in '' work sheet, column A row 1 with a value of 4
+sp.cell(); // cell in '' work sheet at column A row 0 with a value of undefined
+sp.cell("WS1:BB:34"); // cell in 'WS1' sheet, column BB row 34
 ```
 
 A cell automatically adds itself to the global workbook: **cellWorkBook**.

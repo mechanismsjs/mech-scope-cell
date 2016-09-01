@@ -21,11 +21,11 @@ describe("getting a reference to a cell - cellRef", function() {
   });
 
   it("should return a cell from the book", function() {
-    var newCell = m.cell("B:5", -23); // create a cell
+    var newCell = m.cell(":B:5", -23); // create a cell
     var newCell2 = m.cell("B:3", 22);
-    var mech = m.cellRef("B:5");
+    var mech = m.cellRef(":B:5");
 
-    expect(mech.id).to.equal("B:5");
+    expect(mech.id).to.equal(":B:5");
     expect(mech.col).to.equal("B");
     expect(mech.row).to.equal(5);
 
@@ -42,6 +42,36 @@ describe("getting a reference to a cell - cellRef", function() {
 
     var mech3 = m.cellRef(null);
     expect(mech3.go).to.be.undefined;
+  });
+
+  it("should return a cell in a sheet", function() {
+    m.cell("Sheet01:AA:2", "hello");
+    var mech = m.cellRef("Sheet01:AA:2");
+    expect(mech.id).to.equal("Sheet01:AA:2");
+    expect(mech.sheet).to.equal("Sheet01");
+    expect(mech.col).to.equal("AA");
+    expect(mech.row).to.equal(2);
+  });
+
+  it("should allow for cells that are 'named' with booleans", function() {
+    var mech = m.cellRef(true);
+    m.cell(true, 10);
+    expect(mech.id).to.equal(true);
+    expect(mech.col).to.be.undefined;
+    expect(mech.row).to.be.NaN;
+
+    var mech2 = m.cellGet(false);
+    m.cell(false, 12);
+    expect(mech2.id).to.equal(false);
+    expect(mech2.col).to.be.undefined;
+    expect(mech2.row).to.be.NaN;
+  });
+
+  it("should allow for cells that are 'named' numerically", function() {
+    var mech = m.cellRef(5);
+    expect(mech.id).to.equal(5);
+    expect(mech.col).to.be.undefined;
+    expect(mech.row).to.be.NaN;
   });
 
 });

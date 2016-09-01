@@ -62,14 +62,44 @@ describe("removing a cell - cellRm", function() {
 
 
   it("should return the correct result when no cell id is given", function() {
-    m.cell("A:1", "Hello");
+    m.cell(":A:1", "Hello");
     var mech = m.cellRm();
     expect(mech.go).to.be.true;
     expect(mech.goNum).to.equal(1);
     expect(mech.goStr).to.equal("true");
     expect(mech.goArr).to.contain(true);
     expect(mech.goBool).to.be.true;
-    expect(m.cellWorkBook).to.have.property("A:1");
+    expect(m.cellWorkBook).to.have.property(":A:1");
+  });
+
+  it("should return a cell in a sheet", function() {
+    m.cell("Sheet01:AA:2", "hello");
+    var mech = m.cellRef("Sheet01:AA:2");
+    expect(mech.id).to.equal("Sheet01:AA:2");
+    expect(mech.sheet).to.equal("Sheet01");
+    expect(mech.col).to.equal("AA");
+    expect(mech.row).to.equal(2);
+  });
+
+  it("should allow for cells that are 'named' with booleans", function() {
+    var mech = m.cellRm(true);
+    m.cell(true, 10);
+    expect(mech.id).to.equal(true);
+    expect(mech.col).to.be.undefined;
+    expect(mech.row).to.be.NaN;
+
+    var mech2 = m.cellRm(false);
+    m.cell(false, 12);
+    expect(mech2.id).to.equal(false);
+    expect(mech2.col).to.be.undefined;
+    expect(mech2.row).to.be.NaN;
+  });
+
+  it("should allow for cells that are 'named' numerically", function() {
+    var mech = m.cellRm(5);
+    expect(mech.id).to.equal(5);
+    expect(mech.col).to.be.undefined;
+    expect(mech.row).to.be.NaN;
   });
 
 });
